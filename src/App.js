@@ -1,13 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
 import SignUp from './components/signup';
-import { Grid } from '@mui/material';
-
+import { Grid, Paper } from '@mui/material';
+import Login from './components/login';
+import Navbar from './components/Navbar';
 function App() {
+ 
   return (
-    <Grid>
+    <Grid >
+     <h1>Home Page</h1>
       
-      <SignUp />
     </Grid>
     
   );
