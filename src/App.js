@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-
+import SignUp from './components/signup';
+import { Grid, Paper } from '@mui/material';
+import Login from './components/login';
+import Navbar from './components/Navbar';
+import { useEffect, useState } from 'react';
+import ProductList from './components/ProductCard';
 function App() {
+ const [product, setproduct] =useState(null);
+ useEffect(()=>{
+  fetch('https://fakestoreapi.com/products')
+  .then(res=>{
+    return res.json();
+  })
+  .then(data=>{
+    setproduct(data);
+  })
+ },[]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid style={{padding:'100px'}}>
+        {product && <ProductList ProductNew={product} />}
+
+    </Grid>
+    
   );
 }
 
