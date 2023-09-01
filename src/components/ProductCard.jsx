@@ -18,7 +18,7 @@ const ProductCard=({ProductNew})=> {
             
             {ProductNew.map((values)=>{
                 return(
-            <Card sx={{ width: 320, maxWidth: '100%',padding:'10px',margin:'20px 0', boxShadow: 'lg' }}>
+            <Card sx={{ width: 320, maxWidth: '100%',padding:'20px',margin:'20px 0', boxShadow: 'lg' }}>
               <CardOverflow>
                 <AspectRatio sx={{ minWidth: 200 }}>
                   <img
