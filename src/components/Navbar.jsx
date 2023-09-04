@@ -22,6 +22,9 @@ const Navbar = () => {
             <a style={linkstyle} href='/Login'> 
             <li style={listst}>Login</li>
             </a>
+            <a style={linkstyle} href='/AddProduct'> 
+            <li style={listst}>Add Product</li>
+            </a>
           </ul>
         </Grid>
       </Grid>

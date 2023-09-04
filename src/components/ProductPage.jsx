@@ -66,11 +66,11 @@ const ProductPage=()=> {
           <Sheet
             sx={{
               bgcolor: 'background.level1',
-              borderRadius: 'sm',
+              borderRadius: 'lg',
               p: 1.5,
               my: 1.5,
-              display: 'flex',
-              gap: 2,
+              display: 'block',
+              gap: 0,
               '& > div': { flex: 1 },
             }}
           >
@@ -80,18 +80,8 @@ const ProductPage=()=> {
               </Typography>
               <Typography fontWeight="lg">${product.price}</Typography>
             </div>
-            <div>
-              <Typography level="body-xs" fontWeight="lg">
-                Total Ratings
-              </Typography>
-              <Typography fontWeight="lg">{product.rating.count}</Typography>
-            </div>
-            <div>
-              <Typography level="body-xs" fontWeight="lg">
-                Rating
-              </Typography>
-              <Rating value={product.rating.rate} readOnly />
-            </div>
+            
+              
             
           </Sheet>
           <Typography level="body-sm" fontWeight="lg" textColor="text.tertiary">
