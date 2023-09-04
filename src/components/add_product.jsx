@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Avatar, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material';
 import { AddCircleOutlineOutlined } from '@mui/icons-material';
 import * as Yup from 'yup';
 
@@ -9,7 +9,7 @@ const AddProduct = () => {
     const avatarstyle = { backgroundColor: '#00004d' };
 
     const [formData, setFormData] = useState({
-        title: '',price: '',image: '',description: '',
+        title: '', price: '', image: '', description: '',
     });
     const [errors, setErrors] = useState({});
 
@@ -77,6 +77,21 @@ const AddProduct = () => {
                             error={Boolean(errors.title)}
                             helperText={errors.title}
                         />
+                        <FormControl fullWidth>
+                            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value='Category'
+                                label="Category"
+                                
+                            >
+                                
+                                <MenuItem value={10}>Ten</MenuItem>
+                                <MenuItem value={20}>Twenty</MenuItem>
+                                <MenuItem value={30}>Thirty</MenuItem>
+                            </Select>
+                        </FormControl>
                         <TextField
                             style={formstyle}
                             fullWidth
