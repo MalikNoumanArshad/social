@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Avatar, Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Avatar, Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material';
 import { AddCircleOutlineOutlined } from '@mui/icons-material';
 import * as Yup from 'yup';
 
@@ -7,9 +7,15 @@ const AddProduct = () => {
     const paperstyle = { padding: '30px 20px', width: '400px', margin: '20px auto' };
     const formstyle = { margin: '10px 0' };
     const avatarstyle = { backgroundColor: '#00004d' };
-
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    useEffect(() => {
+        fetch('https://fakestoreapi.com/products/categories')
+            .then((res) => res.json())
+            .then((json) => setCategories(json));
+    }, []);
     const [formData, setFormData] = useState({
-        title: '', price: '', image: '', description: '',
+        title: '', price: '', image: '', description: '', category: '',
     });
     const [errors, setErrors] = useState({});
 
@@ -18,6 +24,7 @@ const AddProduct = () => {
         price: Yup.number().positive('Price must be a positive number').required('Price is required').typeError("Price must be a number"),
         image: Yup.string().url('Invalid image URL').required('Product image URL is required'),
         description: Yup.string().required('Product description is required'),
+        category: Yup.string().required("select category").typeError("test"),
     });
 
     const handleSubmit = async (e) => {
@@ -35,6 +42,7 @@ const AddProduct = () => {
                     price: formData.price,
                     image: formData.image,
                     description: formData.description,
+                    category: formData.category,
                 }),
             });
 
@@ -46,6 +54,7 @@ const AddProduct = () => {
                     image: '',
                     description: '',
                 });
+                setSelectedCategory('');
             } else {
                 console.error('Failed to add the product');
             }
@@ -77,21 +86,28 @@ const AddProduct = () => {
                             error={Boolean(errors.title)}
                             helperText={errors.title}
                         />
-                        <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                        <FormControl  fullWidth style={{textAlign:'left'}}>
+                            <InputLabel id="category-label">Category</InputLabel>
                             <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value='Category'
+                                labelId="category-label"
+                                value={selectedCategory}
                                 label="Category"
-                                
+                                onChange={(e) => {
+                                    setSelectedCategory(e.target.value);
+                                    setFormData({ ...formData, category: e.target.value });
+                                }}
+                                error={Boolean(errors.category)}
                             >
-                                
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                                <MenuItem value="">Select a category</MenuItem>
+                                {categories.map((category) => (
+                                    <MenuItem  key={category} value={category}>
+                                        {category}
+                                    </MenuItem>
+                                ))}
                             </Select>
+                            <FormHelperText style={{color:'#d32f2f'}}>{errors.category}</FormHelperText>
                         </FormControl>
+
                         <TextField
                             style={formstyle}
                             fullWidth
