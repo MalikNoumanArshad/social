@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
-import { Avatar, Button, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material';
+import { Avatar, Button, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material';
 import { AddCircleOutlineOutlined, CheckBox } from '@mui/icons-material';
 import { userSchema } from './formValidation';
-import * as Yup from 'yup';
 
 const SignUp = () => {
+    const country = ['Pakistan', 'India'];
+    const city = {
+        'Pakistan': ['Sargodha', 'Islamabad', 'Lahore'],
+        'India': ['Mumbai', 'Dehli', 'Gujrat']
+    }
     const paperstyle = { padding: '30px 20px', width: '400px', margin: '20px auto' };
-    const formstyle = { margin: '10px 0' };
+    const formstyle = { margin: '10px 0', textAlign: 'left' };
     const avatarstyle = { backgroundColor: '#00004d' };
+    const [selectedCountry, setSelectedCountry] = useState('')
+
+
 
     const [formData, setFormData] = useState({
         name: '',
@@ -53,6 +60,52 @@ const SignUp = () => {
                             error={Boolean(errors.email)}
                             helperText={errors.email}
                         />
+                        <FormControl  style={formstyle} fullWidth>
+                            <InputLabel id="country">Country</InputLabel>
+                            <Select
+                            labelId='country'
+                                
+                                label="Category"
+
+                                onChange={(e) => setSelectedCountry(e.target.value)}
+                                inputProps={{
+                                    name: 'country',
+                                    id: 'country-select',
+                                }}
+                            >
+                                {country.map(countries => {
+                                    return (
+                                        <MenuItem value={countries} key={countries}>
+                                            {countries}
+                                        </MenuItem>
+                                    )
+                                })}
+                            </Select>
+                        </FormControl>
+
+                        {selectedCountry && (
+                            <FormControl fullWidth style={formstyle}>
+                                <InputLabel htmlFor="city">City</InputLabel>
+                                <Select
+                                label='City'
+                                labelId='city'
+                                    fullWidth
+                                    inputProps={{
+                                        name: 'city',
+                                        id: 'city-select',
+                                    }}
+                                >
+                                    {city[selectedCountry].map(cities => {
+                                        return (
+                                            <MenuItem value={cities} key={cities}>
+                                                {cities}
+                                            </MenuItem>
+                                        )
+                                    })}
+                                </Select>
+                            </FormControl>
+                        )}
+
                         <TextField
                             style={formstyle}
                             fullWidth
@@ -73,9 +126,10 @@ const SignUp = () => {
                             helperText={errors.password}
                         />
                         <FormControlLabel
+                            style={formstyle}
                             control={<CheckBox name="acceptTerms" />}
                             label="I accept the terms & Conditions"
-                            
+
                         />
                         <br />
                         <Button type='submit' variant='contained' color='primary'>Sign Up</Button>
