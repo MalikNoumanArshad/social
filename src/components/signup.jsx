@@ -22,7 +22,7 @@ const SignUp = () => {
         phoneNumber: '',
         password: '',
         acceptTerms: false,
-        country:'',
+        country: '',
     });
     const [errors, setErrors] = useState({});
 
@@ -61,21 +61,20 @@ const SignUp = () => {
                             error={Boolean(errors.email)}
                             helperText={errors.email}
                         />
-                        <FormControl  style={formstyle} fullWidth>
+                        <FormControl style={formstyle} fullWidth>
                             <InputLabel id="country">Country</InputLabel>
                             <Select
-                            onChange={(e)=>{setSelectedCountry(e.target.value);
-                                setFormData({...formData,country:e.target.value});
-                            }
+                                defaultValue={0}
+                                onChange={(e) => {
+                                    setSelectedCountry(e.target.value);
+                                    setFormData({ ...formData, country: e.target.value });
                                 }
-                            error={Boolean(errors.country)}
-
-                            labelId='country'
-                                
+                                }
+                                error={Boolean(errors.country)}
+                                labelId='country'
                                 label="Category"
-
-                               
                             >
+                                <MenuItem value={0}>No Country Selected</MenuItem>
                                 {country.map(countries => {
                                     return (
                                         <MenuItem value={countries} key={countries}>
@@ -84,22 +83,23 @@ const SignUp = () => {
                                     )
                                 })}
                             </Select>
-                            <FormHelperText style={{color:'#d32f2f'}}>{errors.country}</FormHelperText>
+                            <FormHelperText style={{ color: '#d32f2f' }}>{errors.country}</FormHelperText>
                         </FormControl>
 
                         {selectedCountry && (
                             <FormControl fullWidth style={formstyle}>
                                 <InputLabel htmlFor="city">City</InputLabel>
                                 <Select
-                                
-                                label='City'
-                                labelId='city'
+                                    defaultValue={0}
+                                    label='City'
+                                    labelId='city'
                                     fullWidth
                                     inputProps={{
                                         name: 'city',
                                         id: 'city-select',
                                     }}
                                 >
+                                    <MenuItem value={0}>No City Selected</MenuItem>
                                     {city[selectedCountry].map(cities => {
                                         return (
                                             <MenuItem value={cities} key={cities}>

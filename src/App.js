@@ -49,7 +49,7 @@ function App() {
         </Select>
       </FormControl>
 
-      <FormControl style={{ marginBottom: '20px',width:'300px' }}>
+      <FormControl style={{ marginBottom: '20px',width:'400px' }}>
         <InputLabel id="limit">Select Limit</InputLabel>
         <Select
         label="Limit"

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Avatar, Button, FormControlLabel, Grid, Paper, TextField, Typography } from '@mui/material'
-import { CheckBox, SupervisedUserCircle } from '@mui/icons-material'
+import { Avatar, Button, Grid, Paper, TextField, Typography } from '@mui/material'
+import {  SupervisedUserCircle } from '@mui/icons-material'
 import { userSchema } from './formValidation'
 const Login = () => {
     const paperstyle = { padding: '30px 20px', width: '400px', margin: '20px auto' };
@@ -16,8 +16,8 @@ const Login = () => {
                     <h2>Login</h2>
                     <Typography>Please fill all fields to signup.</Typography>
                     <form style={formstyle}>
-                        <TextField style={formstyle} fullWidth label="Email" />
-                        <TextField style={formstyle} type='password' fullWidth label="Password" />
+                        <TextField style={formstyle} name='email' fullWidth label="Email" />
+                        <TextField style={formstyle} name='password' type='password' fullWidth label="Password" />
                         <br />
                         <Button type='submit' variant='contained' color='primary'> Login </Button>
                     </form>
