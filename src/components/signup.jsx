@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Button, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material';
+import { Avatar, Button, FormControl, FormControlLabel, FormHelperText, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material';
 import { AddCircleOutlineOutlined, CheckBox } from '@mui/icons-material';
 import { userSchema } from './formValidation';
 
@@ -22,6 +22,7 @@ const SignUp = () => {
         phoneNumber: '',
         password: '',
         acceptTerms: false,
+        country:'',
     });
     const [errors, setErrors] = useState({});
 
@@ -63,15 +64,17 @@ const SignUp = () => {
                         <FormControl  style={formstyle} fullWidth>
                             <InputLabel id="country">Country</InputLabel>
                             <Select
+                            onChange={(e)=>{setSelectedCountry(e.target.value);
+                                setFormData({...formData,country:e.target.value});
+                            }
+                                }
+                            error={Boolean(errors.country)}
+
                             labelId='country'
                                 
                                 label="Category"
 
-                                onChange={(e) => setSelectedCountry(e.target.value)}
-                                inputProps={{
-                                    name: 'country',
-                                    id: 'country-select',
-                                }}
+                               
                             >
                                 {country.map(countries => {
                                     return (
@@ -81,12 +84,14 @@ const SignUp = () => {
                                     )
                                 })}
                             </Select>
+                            <FormHelperText style={{color:'#d32f2f'}}>{errors.country}</FormHelperText>
                         </FormControl>
 
                         {selectedCountry && (
                             <FormControl fullWidth style={formstyle}>
                                 <InputLabel htmlFor="city">City</InputLabel>
                                 <Select
+                                
                                 label='City'
                                 labelId='city'
                                     fullWidth
