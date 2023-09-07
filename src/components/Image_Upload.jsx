@@ -41,9 +41,11 @@ const Image_Upload = () => {
       </div>
       </center>
       {error && <p className="error">{error}</p>}
-      <ImageList sx={{ width: 500 }} >
-      {images.map((file,index) => (
-        <ImageListItem key={index}>
+      
+      <div style={{display:'flex',flexDirection:'row'}}>
+        <div style={{padding:'30px'}}>
+          {images.map((file,index) => (
+        <ImageListItem key={index} style={{display:'inline-block',padding:'20px 20px',}}>
             
             <ImageListItemBar
               sx={{
@@ -72,8 +74,8 @@ const Image_Upload = () => {
          
         </ImageListItem>
       ))}
-    </ImageList>
-     
+    </div>
+     </div>
     </div>
   );
 };
