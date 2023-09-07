@@ -39,9 +39,9 @@ const Image_Upload = () => {
         <input  {...getInputProps()} />
         <p>Drag & drop some images here, or click to select images</p>
       </div>
-      </center>
       {error && <p className="error">{error}</p>}
-      
+      </center>
+    <center>
       <div style={{display:'flex',flexDirection:'row'}}>
         <div style={{padding:'30px'}}>
           {images.map((file,index) => (
@@ -76,6 +76,7 @@ const Image_Upload = () => {
       ))}
     </div>
      </div>
+     </center>
     </div>
   );
 };
