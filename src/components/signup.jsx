@@ -64,7 +64,6 @@ const SignUp = () => {
                         <FormControl style={formstyle} fullWidth>
                             <InputLabel id="country">Country</InputLabel>
                             <Select
-                                defaultValue={0}
                                 onChange={(e) => {
                                     setSelectedCountry(e.target.value);
                                     setFormData({ ...formData, country: e.target.value });
@@ -74,7 +73,6 @@ const SignUp = () => {
                                 labelId='country'
                                 label="Category"
                             >
-                                <MenuItem value={0}>No Country Selected</MenuItem>
                                 {country.map(countries => {
                                     return (
                                         <MenuItem value={countries} key={countries}>
@@ -86,7 +84,6 @@ const SignUp = () => {
                             <FormHelperText style={{ color: '#d32f2f' }}>{errors.country}</FormHelperText>
                         </FormControl>
 
-                        {selectedCountry && (
                             <FormControl fullWidth style={formstyle}>
                                 <InputLabel htmlFor="city">City</InputLabel>
                                 <Select
@@ -100,7 +97,8 @@ const SignUp = () => {
                                     }}
                                 >
                                     <MenuItem value={0}>No City Selected</MenuItem>
-                                    {city[selectedCountry].map(cities => {
+                                    
+                                    {selectedCountry && city[selectedCountry].map(cities => {
                                         return (
                                             <MenuItem value={cities} key={cities}>
                                                 {cities}
@@ -109,7 +107,7 @@ const SignUp = () => {
                                     })}
                                 </Select>
                             </FormControl>
-                        )}
+                        
 
                         <TextField
                             style={formstyle}

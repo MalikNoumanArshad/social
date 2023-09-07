@@ -25,6 +25,12 @@ const Navbar = () => {
             <a style={linkstyle} href='/AddProduct'> 
             <li style={listst}>Add Product</li>
             </a>
+            <a style={linkstyle} href='/ImageUpload'> 
+            <li style={listst}>Image Upload</li>
+            </a>
+            <a style={linkstyle} href='/VideoUpload'> 
+            <li style={listst}>Video Upload</li>
+            </a>
           </ul>
         </Grid>
       </Grid>

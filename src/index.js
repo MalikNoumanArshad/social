@@ -9,6 +9,8 @@ import Login from './components/login';
 import Navbar from './components/Navbar';
 import ProductPage from './components/ProductPage';
 import AddProduct from './components/add_product';
+import Image_Upload from './components/Image_Upload';
+import Video_Upload from './components/video_upload';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +24,8 @@ root.render(
           <Route path='/Login' element={<Login />} />
           <Route path='/ProductPage' element={<ProductPage />} />
           <Route path='/AddProduct' element={<AddProduct />} />
+          <Route path='/ImageUpload' element={<Image_Upload />} />
+          <Route path='/VideoUpload' element={<Video_Upload />} />
       
       </Routes>
     </BrowserRouter>
